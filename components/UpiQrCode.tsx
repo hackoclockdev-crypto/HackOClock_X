@@ -10,7 +10,7 @@ interface UpiQrCodeProps {
   qrImageUrl?: string;
 }
 
-export default function UpiQrCode({ upiId, amount, name = "HackO'Clock", qrImageUrl }: UpiQrCodeProps) {
+export default function UpiQrCode({ upiId, amount, name = "Hack0'Clock", qrImageUrl }: UpiQrCodeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function UpiQrCode({ upiId, amount, name = "HackO'Clock", qrImage
       `&pn=${encodeURIComponent(name)}` +
       `&am=${amount}` +
       `&cu=INR` +
-      `&tn=${encodeURIComponent("HackO'Clock Registration Fee")}`;
+      `&tn=${encodeURIComponent("Hack0'Clock Registration Fee")}`;
 
     QRCode.toCanvas(canvasRef.current, upiLink, {
       width: 220,

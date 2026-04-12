@@ -292,7 +292,7 @@ export default function RegisterPage() {
               <span className="text-cyan-500 text-sm font-semibold uppercase tracking-widest">Team Registration</span>
             </div>
             <h1 className="text-3xl sm:text-4xl font-black mb-2">
-              Join <span className="gradient-text">HackO&apos;Clock</span>
+              Join <span className="gradient-text">Hack0&apos;Clock</span>
             </h1>
             <p className="text-zinc-500 text-sm">Registration fee: ₹350 per head</p>
           </div>
@@ -567,7 +567,7 @@ export default function RegisterPage() {
                   <Shield className="w-4 h-4 text-cyan-500 flex-shrink-0 mt-0.5" />
                   <div className="text-xs text-zinc-400 space-y-1">
                     <p className="font-semibold text-zinc-300">Secure Payment Verification</p>
-                    <p>Your screenshot is encrypted and stored securely. It is only visible to HackO&apos;Clock admins for payment verification. We never share your data with third parties.</p>
+                    <p>Your screenshot is encrypted and stored securely. It is only visible to Hack0&apos;Clock admins for payment verification. We never share your data with third parties.</p>
                   </div>
                 </div>
 
@@ -591,7 +591,7 @@ export default function RegisterPage() {
                 </div>
                 <div>
                   <h2 className="text-2xl font-black text-white mb-2">Registration Submitted! 🎉</h2>
-                  <p className="text-cyan-400 font-semibold">Your HackO&apos;Clock registration is submitted!</p>
+                  <p className="text-cyan-400 font-semibold">Your Hack0&apos;Clock registration is submitted!</p>
                   <p className="text-zinc-400 text-sm mt-2">
                     We&apos;ll verify your payment within 24 hours and send confirmation to{' '}
                     <span className="text-cyan-400">{safeText(form.leaderEmail)}</span>

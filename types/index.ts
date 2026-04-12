@@ -1,7 +1,7 @@
 /**
  * types/index.ts
  *
- * Centralized TypeScript interfaces for the HackO'Clock registration system.
+ * Centralized TypeScript interfaces for the Hack0'Clock registration system.
  * These types drive both the database structure and the API response shapes.
  *
  * SECURITY NOTE: Types marked [INTERNAL] must NEVER be sent to the frontend.

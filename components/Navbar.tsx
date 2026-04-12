@@ -35,14 +35,14 @@ export default function Navbar() {
         <Link
           href="/"
           className="flex items-center gap-2 group"
-          aria-label="HackO'Clock Home"
+          aria-label="Hack0'Clock Home"
         >
           <div className="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 group-hover:bg-cyan-500/20 transition-all">
             <Clock className="w-5 h-5 text-cyan-500" />
           </div>
           <span className="font-bold text-lg tracking-tight">
             <span className="text-white">Hack</span>
-            <span className="gradient-text">O&apos;Clock</span>
+            <span className="gradient-text">0&apos;Clock</span>
           </span>
         </Link>
 
