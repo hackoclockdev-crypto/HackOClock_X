@@ -27,21 +27,21 @@ const jetbrainsMono = JetBrains_Mono({
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "Hack0'Clock — Where Time Meets Innovation",
-  description: "Hack0'Clock — 18-Hour Team Hackathon. Build, innovate, and compete for ₹20,000 in prizes. Register your team now!",
-  keywords: ["Hack0'Clock", 'hackathon', '18-hour hackathon', 'team hackathon', 'coding competition', 'innovation'],
-  authors: [{ name: "Hack0'Clock Team" }],
+  title: "HackO'Clock — Where Time Meets Innovation",
+  description: "HackO'Clock — 18-Hour Team Hackathon. Build, innovate, and compete for ₹20,000 in prizes. Register your team now!",
+  keywords: ["HackO'Clock", 'hackathon', '18-hour hackathon', 'team hackathon', 'coding competition', 'innovation'],
+  authors: [{ name: "HackO'Clock Team" }],
   robots: 'index, follow',
   openGraph: {
-    title: "Hack0'Clock — Where Time Meets Innovation",
+    title: "HackO'Clock — Where Time Meets Innovation",
     description: "18-Hour Team Hackathon | ₹20,000 Prize Pool | Register Now",
     type: 'website',
     locale: 'en_IN',
-    siteName: "Hack0'Clock",
+    siteName: "HackO'Clock",
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Hack0'Clock — 18-Hour Team Hackathon",
+    title: "HackO'Clock — 18-Hour Team Hackathon",
     description: '₹20,000 Prize Pool | Register your team now!',
   },
   // Prevent search engines from indexing admin pages

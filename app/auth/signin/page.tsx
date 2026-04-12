@@ -2,18 +2,57 @@
  * app/auth/signin/page.tsx
  *
  * Admin sign-in page. Regular users use OAuth directly.
- * Styled consistently with the dark Hack0'Clock brand.
+ * Styled consistently with the dark HackO'Clock brand.
  */
 
 'use client';
-@@ -50,5 +50,5 @@
-         <div className="flex items-center justify-center gap-2 mb-8">
-           <Clock className="w-6 h-6 text-cyan-500" />
-           <span className="text-xl font-bold">
--            Hack<span className="gradient-text">O&apos;Clock</span>
-+            Hack<span className="gradient-text">0&apos;Clock</span>
-           </span>
-         </div>
+
+import { useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { Clock, Lock, Mail, Key, AlertCircle, Loader2, Eye, EyeOff } from 'lucide-react';
+
+export default function SignInPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    const result = await signIn('admin-credentials', {
+      email,
+      password,
+      redirect: false,
+    });
+
+    setLoading(false);
+
+    if (result?.ok) {
+      router.replace('/admin');
+    } else if (result?.error === 'TOO_MANY_ATTEMPTS') {
+      setError('Too many login attempts. Please wait 15 minutes and try again.');
+    } else {
+      // Generic error — never reveal whether email or password was wrong
+      setError('Invalid credentials. Please try again.');
+    }
+  };
+
+  return (
+    <main className="min-h-screen bg-hoc-bg flex items-center justify-center p-4 grid-bg">
+      <div className="w-full max-w-sm">
+        {/* Logo */}
+        <div className="flex items-center justify-center gap-2 mb-8">
+          <Clock className="w-6 h-6 text-cyan-500" />
+          <span className="text-xl font-bold">
+            Hack<span className="gradient-text">O&apos;Clock</span>
+          </span>
+        </div>
 
         <div
           className="rounded-2xl p-8"

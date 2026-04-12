@@ -5,7 +5,7 @@ test.describe('Smoke Test - Main Page', () => {
     await page.goto('/');
 
     // 1. Verify branding
-    await expect(page.locator('h1')).toContainText("Hack0'Clock");
+    await expect(page.locator('h1')).toContainText("HackO'Clock");
     
     // 2. Verify navigation links
     await expect(page.locator('nav')).toBeVisible();
@@ -38,6 +38,6 @@ test.describe('Smoke Test - Main Page', () => {
     const errorMsg = page.locator('.bg-red-500\\/10');
     // If the browser blocks it via 'required', we might not see our custom error yet.
     // So we just check the button didn't crash the page.
-    await expect(page.locator('h1')).toContainText("Hack0'Clock");
+    await expect(page.locator('h1')).toContainText("HackO'Clock");
   });
 });

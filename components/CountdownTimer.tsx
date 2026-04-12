@@ -95,7 +95,7 @@ export default function CountdownTimer() {
     return (
       <div className="text-center">
         <p className="text-2xl font-bold gradient-text">
-          🚀 Hack0&apos;Clock is LIVE!
+          🚀 HackO&apos;Clock is LIVE!
         </p>
       </div>
     );

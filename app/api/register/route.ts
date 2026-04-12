@@ -153,7 +153,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         success: true,
-        message: "Your Hack0'Clock registration is submitted! We'll verify your payment within 24 hours.",
+        message: "Your HackO'Clock registration is submitted! We'll verify your payment within 24 hours.",
       },
       { status: 201, headers: corsHeaders }
     );

@@ -1,5 +1,5 @@
 /**
- * app/page.tsx — Main landing page for Hack0'Clock
+ * app/page.tsx — Main landing page for HackO'Clock
  *
  * Sections: Hero → About → Prizes → Schedule → Tracks → FAQ → Contact → Footer
  * All user input (contact form) is sent via fetch to /api/contact (server-side validated).
@@ -70,7 +70,7 @@ const tracks = [
 
 const faqs = [
   {
-    q: "Who can participate in Hack0'Clock?",
+    q: "Who can participate in HackO'Clock?",
     a: "Any student or working professional can participate. Teams of 2–4 members are allowed. All skill levels are welcome — we have tracks for beginners and experts alike.",
   },
   {
@@ -335,7 +335,7 @@ export default function HomePage() {
             {/* Main heading */}
             <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight mb-6 leading-none">
               Hack
-              <span className="gradient-text-animated text-glow">0&apos;Clock</span>
+              <span className="gradient-text-animated text-glow">O&apos;Clock</span>
             </h1>
 
             {/* Tagline */}
@@ -400,10 +400,10 @@ export default function HomePage() {
             <div className="">
               <div className="text-center mb-16">
                 <p className="text-cyan-500 text-sm font-semibold uppercase tracking-widest mb-3">About</p>
-                <h2 className="text-4xl font-black mb-4">What is <span className="gradient-text">Hack0&apos;Clock</span>?</h2>
+                <h2 className="text-4xl font-black mb-4">What is <span className="gradient-text">HackO&apos;Clock</span>?</h2>
                 <div className="divider mx-auto" />
                 <p className="text-zinc-400 text-lg max-w-3xl mx-auto">
-                  Hack0&apos;Clock is a 18-hour team hackathon where the clock is your biggest challenge and your biggest motivator.
+                  HackO&apos;Clock is a 18-hour team hackathon where the clock is your biggest challenge and your biggest motivator.
                   We bring together the brightest minds to compress months of innovation into a single adrenaline-fueled day.
                 </p>
               </div>
@@ -707,10 +707,10 @@ export default function HomePage() {
         <div className="container flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
             <Clock className="w-4 h-4 text-cyan-500" />
-            <span className="font-bold text-white">Hack<span className="gradient-text">0&apos;Clock</span></span>
+            <span className="font-bold text-white">Hack<span className="gradient-text">O&apos;Clock</span></span>
           </div>
           <p className="text-zinc-600 text-sm text-center">
-            © 2026 Hack0&apos;Clock. Built with security-first principles.
+            © 2026 HackO&apos;Clock. Built with security-first principles.
           </p>
           <div className="flex items-center gap-4">
             <Lock className="w-4 h-4 text-zinc-600" />
