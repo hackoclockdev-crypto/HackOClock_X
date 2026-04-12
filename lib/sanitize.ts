@@ -14,8 +14,14 @@ let purifyInstance: any = null;
 async function getPurify() {
   if (!purifyInstance) {
     // Only import on demand to avoid build-time asset issues
-    const DOMPurify = (await import('isomorphic-dompurify')).default;
-    purifyInstance = DOMPurify;
+    const mod = await import('isomorphic-dompurify');
+    // Handle both ES modules and CommonJS-friendly exports
+    purifyInstance = mod.default || mod;
+    
+    if (typeof purifyInstance.sanitize !== 'function') {
+      console.warn('[sanitize] DOMPurify initialization returned an invalid instance. Falling back to no-op.');
+      purifyInstance = { sanitize: (s: string) => s };
+    }
   }
   return purifyInstance;
 }

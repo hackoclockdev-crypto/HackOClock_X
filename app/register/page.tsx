@@ -18,7 +18,7 @@
 
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import UpiQrCode from '@/components/UpiQrCode';
@@ -152,16 +152,32 @@ export default function RegisterPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [purify, setPurify] = useState<any>(null);
 
-  function safeText(text: string): string {
-    if (typeof window === 'undefined' || !text) return text;
-    
-    // Attempt to load DOMPurify lazily if not already available
-    if (!purify) {
-      import('isomorphic-dompurify').then(mod => setPurify(mod.default));
-      return text; // Return raw text on first render; it will re-render once purified
+  useEffect(() => {
+    // Only load in the browser
+    if (typeof window !== 'undefined') {
+      import('isomorphic-dompurify').then(mod => {
+        const instance = mod.default || mod;
+        if (instance && typeof instance.sanitize === 'function') {
+          setPurify(instance);
+        }
+      }).catch(err => {
+        console.error('[register] Failed to load DOMPurify:', err);
+      });
     }
+  }, []);
+
+  function safeText(text: string): string {
+    if (!text) return '';
     
-    return purify.sanitize(text, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+    // If not yet loaded or on server, return a safe "working" state
+    if (!purify) return text; 
+    
+    try {
+      return purify.sanitize(text, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
+    } catch (err) {
+      console.warn('[register] Sanitization failed, falling back to raw text:', err);
+      return text;
+    }
   }
 
   // ── Step 1: Team info validation ──────────────────────────────────────────
