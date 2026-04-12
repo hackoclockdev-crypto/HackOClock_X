@@ -1,0 +1,55 @@
+# =============================================================
+# HackO'Clock — .gitignore
+# =============================================================
+
+# ─── Environment & Secrets ───────────────────────────────────
+# CRITICAL: These files contain secrets and must NEVER be committed.
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Firebase service account JSON files — NEVER commit these
+*service-account*.json
+*serviceAccount*.json
+*firebase-adminsdk*.json
+credentials.json
+
+# ─── Next.js ─────────────────────────────────────────────────
+.next/
+out/
+build/
+
+# ─── Node ────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ─── TypeScript ──────────────────────────────────────────────
+*.tsbuildinfo
+next-env.d.ts
+
+# ─── OS ──────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Editor ──────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ─── Logs ────────────────────────────────────────────────────
+logs/
+*.log
+
+# ─── Testing ─────────────────────────────────────────────────
+coverage/
+.nyc_output
+
+# ─── Misc ────────────────────────────────────────────────────
+.vercel
+*.pem
