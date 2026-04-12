@@ -180,7 +180,7 @@ function exportCsv(registrations: Registration[]) {
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = `hackoclock-registrations-${new Date().toISOString().slice(0, 10)}.csv`;
+  link.download = `hack0clock-registrations-${new Date().toISOString().slice(0, 10)}.csv`;
   link.click();
 }
 
@@ -277,7 +277,7 @@ export default function AdminDashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-black text-white">
-            HackO&apos;Clock <span className="gradient-text">Admin</span>
+            Hack0&apos;Clock <span className="gradient-text">Admin</span>
           </h1>
           <p className="text-sm text-zinc-500 mt-1">
             {new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
