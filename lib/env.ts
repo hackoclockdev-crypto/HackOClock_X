@@ -22,7 +22,10 @@ const envSchema = z.object({
 
   // Admin Access
   ADMIN_EMAIL: z.string().email(),
+  ADMIN_EMAILS: z.string().optional(),
   ADMIN_PASSWORD: z.string().min(8),
+  ADMIN_EMAIL_2: z.string().email().optional(),
+  ADMIN_PASSWORD_2: z.string().min(8).optional(),
 
   // Pricing/UPI
   NEXT_PUBLIC_UPI_ID: z.string().min(1),

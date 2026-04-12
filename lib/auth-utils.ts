@@ -1,4 +1,5 @@
 import 'server-only';
+import { env } from '@/lib/env';
 
 /**
  * Validates if an email is in the list of allowed admin emails.
@@ -7,10 +8,14 @@ import 'server-only';
 export function checkIsAdmin(email: string | null | undefined): boolean {
   if (!email) return false;
 
-  const emailsString = process.env.ADMIN_EMAILS;
+  const emailsString = env.ADMIN_EMAILS;
   if (!emailsString) {
-    // Fallback to legacy single ADMIN_EMAIL if plural version isn't set yet
-    return email.toLowerCase() === process.env.ADMIN_EMAIL?.toLowerCase();
+    // Fallback to legacy single ADMIN_EMAIL or the new ADMIN_EMAIL_2
+    const targetEmail = email.toLowerCase();
+    return (
+      targetEmail === env.ADMIN_EMAIL?.toLowerCase() ||
+      targetEmail === env.ADMIN_EMAIL_2?.toLowerCase()
+    );
   }
 
   const allowedEmails = emailsString.split(',').map(e => e.trim().toLowerCase());

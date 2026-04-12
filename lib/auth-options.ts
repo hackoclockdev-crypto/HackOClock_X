@@ -44,10 +44,28 @@ export const authOptions: NextAuthOptions = {
         }
 
         // ── 2. Credential Verification ───────────────────────────────────
-        const isValidEmail = checkIsAdmin(credentials?.email);
-        const isValidPassword = credentials?.password === process.env.ADMIN_PASSWORD;
+        const inputEmail = credentials?.email?.toLowerCase();
+        const inputPassword = credentials?.password;
 
-        if (!isValidEmail || !isValidPassword) {
+        let isValid = false;
+
+        // Check Admin 1
+        if (inputEmail === process.env.ADMIN_EMAIL?.toLowerCase() && 
+            inputPassword === process.env.ADMIN_PASSWORD) {
+          isValid = true;
+        } 
+        // Check Admin 2
+        else if (process.env.ADMIN_EMAIL_2 && 
+                 inputEmail === process.env.ADMIN_EMAIL_2?.toLowerCase() && 
+                 inputPassword === process.env.ADMIN_PASSWORD_2) {
+          isValid = true;
+        }
+        // Fallback for ADMIN_EMAILS list (shared password)
+        else if (checkIsAdmin(inputEmail) && inputPassword === process.env.ADMIN_PASSWORD) {
+          isValid = true;
+        }
+
+        if (!isValid) {
           await logAdminAttempt('ADMIN_LOGIN_FAILURE', credentials?.email ?? 'unknown', ip, userAgent, 'INVALID_CREDENTIALS');
           return null;
         }
