@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { 
-  Clock, Lock, Mail, Key, AlertCircle, 
+  Clock, Mail, Key, AlertCircle, 
   Loader2, Eye, EyeOff, ShieldCheck, 
   Cpu, Activity, Zap 
 } from 'lucide-react';
