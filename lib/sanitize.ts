@@ -12,14 +12,25 @@ import 'server-only';
 let purifyInstance: any = null;
 
 async function getPurify() {
+  // ── Build Phase Bypass ─────────────────────────────────────────────────────
+  // Ensure we don't try to initialize JSDOM/DOMPurify during static generation
+  if (process.env.NEXT_PHASE === 'phase-production-build') {
+    return { sanitize: (s: string) => s };
+  }
+
   if (!purifyInstance) {
-    // Only import on demand to avoid build-time asset issues
-    const mod = await import('isomorphic-dompurify');
-    // Handle both ES modules and CommonJS-friendly exports
-    purifyInstance = mod.default || mod;
-    
-    if (typeof purifyInstance.sanitize !== 'function') {
-      console.warn('[sanitize] DOMPurify initialization returned an invalid instance. Falling back to no-op.');
+    try {
+      // ── Server-Side Only Dependencies ──────────────────────────────────────
+      // @ts-expect-error - jsdom types are missing in this environment
+      const { JSDOM } = await import('jsdom');
+      const createDOMPurify = (await import('dompurify')).default;
+      
+      const window = new JSDOM('').window;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      purifyInstance = createDOMPurify(window as any);
+    } catch (err) {
+      console.error('[sanitize] Failed to initialize DOMPurify:', err);
+      // Fallback to a no-op to prevent route crashing
       purifyInstance = { sanitize: (s: string) => s };
     }
   }

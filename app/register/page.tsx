@@ -155,8 +155,8 @@ export default function RegisterPage() {
   useEffect(() => {
     // Only load in the browser
     if (typeof window !== 'undefined') {
-      import('isomorphic-dompurify').then(mod => {
-        const instance = mod.default || mod;
+      import('dompurify').then(mod => {
+        const instance = mod.default;
         if (instance && typeof instance.sanitize === 'function') {
           setPurify(instance);
         }
