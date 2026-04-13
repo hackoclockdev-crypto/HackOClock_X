@@ -32,10 +32,10 @@ import {
 
 const TRACKS = [
   { id: 'AI_ML', label: 'Artificial Intelligence & Machine Learning', icon: '🤖' },
-  { id: 'FINTECH', label: 'FinTech', icon: '💰' },
-  { id: 'HEALTHCARE', label: 'Healthcare & Wellbeing', icon: '🏥' },
-  { id: 'SUSTAINABILITY', label: 'Sustainability & Environment', icon: '🌱' },
   { id: 'CYBERSECURITY', label: 'Cybersecurity', icon: '🔐' },
+  { id: 'HEALTHTECH', label: 'HealthTech & Wellbeing', icon: '🏥' },
+  { id: 'FINTECH', label: 'FinTech', icon: '💰' },
+  { id: 'OPEN_INNOVATION', label: 'Open Innovation', icon: '🌱' },
 ];
 
 interface FormData {
@@ -68,13 +68,12 @@ function StepIndicator({ current, total }: { current: Step; total: number }) {
       {Array.from({ length: total }, (_, i) => i + 1).map((s) => (
         <div key={s} className="flex items-center gap-2">
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-              s < current
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${s < current
                 ? 'bg-cyan-500 text-black'
                 : s === current
-                ? 'bg-cyan-500/20 border-2 border-cyan-500 text-cyan-400'
-                : 'bg-zinc-800 text-zinc-600'
-            }`}
+                  ? 'bg-cyan-500/20 border-2 border-cyan-500 text-cyan-400'
+                  : 'bg-zinc-800 text-zinc-600'
+              }`}
           >
             {s < current ? <CheckCircle className="w-4 h-4" /> : s}
           </div>
@@ -111,18 +110,18 @@ function BackgroundDecor() {
         <div
           key={i}
           className={`absolute animate-${speed}`}
-          style={{ 
-            top, 
-            left, 
+          style={{
+            top,
+            left,
             animationDelay: delay,
           }}
         >
-          <Icon 
-            size={size} 
-            className="text-cyan-500/40" 
-            style={{ 
+          <Icon
+            size={size}
+            className="text-cyan-500/40"
+            style={{
               filter: `drop-shadow(0 0 8px rgba(6, 182, 212, 0.4))`
-            }} 
+            }}
           />
         </div>
       ))}
@@ -168,10 +167,10 @@ export default function RegisterPage() {
 
   function safeText(text: string): string {
     if (!text) return '';
-    
+
     // If not yet loaded or on server, return a safe "working" state
-    if (!purify) return text; 
-    
+    if (!purify) return text;
+
     try {
       return purify.sanitize(text, { ALLOWED_TAGS: [], ALLOWED_ATTR: [] });
     } catch (err) {
@@ -354,11 +353,10 @@ export default function RegisterPage() {
                             memberEmails: undefined
                           }));
                         }}
-                        className={`py-3 rounded-xl border font-semibold text-sm transition-all ${
-                          form.teamSize === size
+                        className={`py-3 rounded-xl border font-semibold text-sm transition-all ${form.teamSize === size
                             ? 'border-cyan-500 bg-cyan-500/10 text-cyan-400'
                             : 'border-zinc-800 text-zinc-500 hover:border-zinc-600'
-                        }`}
+                          }`}
                         id={`team-size-${size}`}
                       >
                         {size} members
@@ -380,11 +378,10 @@ export default function RegisterPage() {
                           setForm(f => ({ ...f, track: track.id }));
                           setErrors(e => ({ ...e, track: undefined }));
                         }}
-                        className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(50%-0.5rem)] ${
-                          form.track === track.id
+                        className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(50%-0.5rem)] ${form.track === track.id
                             ? 'border-cyan-500 bg-cyan-500/10 text-cyan-400'
                             : 'border-zinc-800 text-zinc-500 hover:border-zinc-700'
-                        }`}
+                          }`}
                         id={`track-${track.id.toLowerCase()}`}
                       >
                         <span className="text-xl">{track.icon}</span>
