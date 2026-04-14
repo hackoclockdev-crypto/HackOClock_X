@@ -94,11 +94,18 @@ export async function POST(request: NextRequest) {
     const data = parseResult.data;
 
     // ── Sanitize and store ────────────────────────────────────────────────
+    const safeMessage = await sanitizeText(data.message);
+    const safeTeamNo = data.teamNo ? await sanitizeText(data.teamNo) : '';
+    
+    const finalMessage = safeTeamNo 
+      ? `[Team No: ${safeTeamNo}]\n\n${safeMessage}` 
+      : safeMessage;
+
     const { error: dbError } = await supabase.from('contact_submissions').insert([{
       name: await sanitizeText(data.name),
       email: await sanitizeText(data.email),
       subject: await sanitizeText(data.subject),
-      message: await sanitizeText(data.message),
+      message: finalMessage,
       ip: clientIp,
     }]);
 

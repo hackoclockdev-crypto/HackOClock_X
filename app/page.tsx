@@ -49,15 +49,19 @@ const prizes = [
 
 
 const schedule = [
-  { time: '09:00 AM', event: 'Registration & Check-in', desc: 'Arrival, kit distribution, team networking' },
-  { time: '10:00 AM', event: 'Opening Ceremony', desc: 'Keynote address, problem statement reveal, rules briefing' },
-  { time: '11:00 AM', event: '⚡ Hacking Begins', desc: 'Start building! Mentors available on all floors', highlight: true },
-  { time: '01:00 PM', event: 'Lunch Break', desc: 'Catered lunch + sponsor stalls + demos' },
-  { time: '06:00 PM', event: 'Mid-point Check', desc: 'Progress demos for all teams (mandatory)' },
-  { time: '08:00 PM', event: 'Dinner + Networking', desc: 'Interact with sponsors, investors, and alumni' },
-  { time: '11:00 AM+1', event: '🛑 Hacking Ends', desc: 'Code freeze — final submission on devpost', highlight: true },
-  { time: '12:00 PM+1', event: 'Judging Rounds', desc: '5-minute pitches + live Q&A with judges' },
-  { time: '04:00 PM+1', event: '🏆 Award Ceremony', desc: 'Winners announced, prizes distributed, closing remarks' },
+  { time: '09:30 AM', event: 'Registration & Kit Distribution', desc: 'Participant check-in, kit collection, and venue allocation.' },
+  { time: '11:00 AM', event: 'Problem Statement Reveal', desc: 'Official distribution of the hackathon challenges.' },
+  { time: '11:15 AM', event: 'Ideation & Submission', desc: 'Teams draft abstracts and technical solution approaches.' },
+  { time: '12:00 PM', event: '⚡ Hacking Begins', desc: 'Official development start and initial prototyping.', highlight: true },
+  { time: '01:30 PM', event: 'Lunch Break', desc: 'Mid-day recharge for all participants.' },
+  { time: '02:30 PM', event: 'Development Phase II', desc: 'Active building and coding continues.' },
+  { time: '06:00 PM', event: 'Tea & Snacks Break', desc: 'Short break for refreshments.' },
+  { time: '06:30 PM', event: 'Core Building Phase', desc: 'Implementation of major features and core functionality.' },
+  { time: '09:00 PM', event: 'Dinner Break', desc: 'Evening meal and networking.' },
+  { time: '10:00 PM', event: 'Final Development Phase', desc: 'Overnight coding with a Fun Session at 2:00 AM.' },
+  { time: '04:00 AM+1', event: '🛑 Hacking Ends', desc: 'Final submission of GitHub repos and PPTs.', highlight: true },
+  { time: '05:30 AM+1', event: 'Final Presentations', desc: 'Top selected teams pitch their solutions (5-min pitch + Q&A).' },
+  { time: '07:30 AM+1', event: 'Conclusion', desc: 'Final rounds wrap up.' },
 ];
 
 const tracks = [
@@ -135,7 +139,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 
 // ── Contact Form ──────────────────────────────────────────────────────────────
 function ContactForm() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '', teamNo: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
@@ -154,10 +158,18 @@ function ContactForm() {
 
       if (res.ok && data.success) {
         setStatus('success');
-        setForm({ name: '', email: '', subject: '', message: '' });
+        setForm({ name: '', email: '', subject: '', message: '', teamNo: '' });
       } else {
         setStatus('error');
-        setErrorMsg(data.message ?? 'Failed to send. Please try again.');
+        // Extract specific field error if available
+        let detailedError = data.message ?? 'Failed to send. Please try again.';
+        if (data.fields) {
+          const firstFieldError = Object.values(data.fields)[0];
+          if (Array.isArray(firstFieldError) && firstFieldError.length > 0) {
+            detailedError = `${detailedError} (${firstFieldError[0]})`;
+          }
+        }
+        setErrorMsg(detailedError);
       }
     } catch {
       setStatus('error');
@@ -195,18 +207,34 @@ function ContactForm() {
           />
         </div>
       </div>
-      <div>
-        <label htmlFor="contact-subject" className="block text-xs font-semibold text-zinc-400 mb-1.5">Subject</label>
-        <input
-          id="contact-subject"
-          type="text"
-          className="input-field"
-          placeholder="Question about registration"
-          value={form.subject}
-          onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
-          required
-          maxLength={200}
-        />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="contact-subject" className="block text-xs font-semibold text-zinc-400 mb-1.5">Subject</label>
+          <input
+            id="contact-subject"
+            type="text"
+            className="input-field"
+            placeholder="Question about registration"
+            value={form.subject}
+            onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
+            required
+            maxLength={200}
+          />
+        </div>
+        <div>
+          <label htmlFor="contact-team" className="block text-xs font-semibold text-zinc-400 mb-1.5">
+            Team No / Name <span className="text-zinc-600 font-normal">(Optional)</span>
+          </label>
+          <input
+            id="contact-team"
+            type="text"
+            className="input-field"
+            placeholder="e.g. Team 42"
+            value={form.teamNo}
+            onChange={e => setForm(f => ({ ...f, teamNo: e.target.value }))}
+            maxLength={50}
+          />
+        </div>
       </div>
       <div>
         <label htmlFor="contact-message" className="block text-xs font-semibold text-zinc-400 mb-1.5">Message</label>
@@ -359,6 +387,21 @@ export default function HomePage() {
                 Learn More
                 <ChevronDown className="w-4 h-4" />
               </a>
+            </div>
+
+            {/* Registration Deadline Notice */}
+            <div className="flex justify-center mb-8">
+              <div
+                className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest animate-pulse"
+                style={{
+                  background: 'rgba(251, 191, 36, 0.08)',
+                  border: '1px solid rgba(251, 191, 36, 0.35)',
+                  color: '#fbbf24',
+                }}
+              >
+                <span>⏰</span>
+                Last Day to Register: April 21, 2026
+              </div>
             </div>
 
             {/* Countdown */}

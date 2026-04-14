@@ -35,7 +35,7 @@ const TRACKS = [
   { id: 'CYBERSECURITY', label: 'Cybersecurity', icon: '🔐' },
   { id: 'HEALTHTECH', label: 'HealthTech & Wellbeing', icon: '🏥' },
   { id: 'FINTECH', label: 'FinTech', icon: '💰' },
-  { id: 'OPEN_INNOVATION', label: 'Open Innovation', icon: '🌱' },
+  { id: 'SUSTAINABILITY_ENV', label: 'Sustainability & Environment', icon: '♻️' },
 ];
 
 interface FormData {
@@ -602,9 +602,9 @@ export default function RegisterPage() {
                   <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">What&apos;s Next</p>
                   {[
                     'Check your email for a registration confirmation',
-                    'Join our Discord community for updates',
+                    'Last day to register: April 21 — spread the word!',
                     'Prepare your team and project ideas',
-                    'Arrive at the venue by 8:30 AM on April 23',
+                    'Arrive at the venue by 9:00 AM on April 23',
                   ].map((step, i) => (
                     <div key={i} className="flex items-start gap-3 text-sm">
                       <span className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-500 text-xs flex items-center justify-center flex-shrink-0 font-bold">

@@ -264,11 +264,10 @@ export default function AdminDashboard() {
 
   const TRACK_LABELS: Record<string, string> = {
     AI_ML: 'AI/ML',
-    WEB3_BLOCKCHAIN: 'Web3',
     CYBERSECURITY: 'Security',
     HEALTHTECH: 'HealthTech',
     FINTECH: 'FinTech',
-    OPEN_INNOVATION: 'Open',
+    SUSTAINABILITY_ENV: 'Sustainability',
   };
 
   return (

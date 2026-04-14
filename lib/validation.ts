@@ -31,11 +31,10 @@ const TEAM_NAME_REGEX = /^[a-zA-Z0-9\s\-_]+$/;
 // Valid hackathon tracks
 export const VALID_TRACKS = [
   'AI_ML',
-  'WEB3_BLOCKCHAIN',
   'CYBERSECURITY',
   'HEALTHTECH',
   'FINTECH',
-  'OPEN_INNOVATION',
+  'SUSTAINABILITY_ENV',
 ] as const;
 
 export type Track = typeof VALID_TRACKS[number];
@@ -126,6 +125,12 @@ export const ContactSchema = z.object({
     .max(254)
     .regex(EMAIL_REGEX, 'Please enter a valid email address')
     .transform(s => s.toLowerCase().trim()),
+
+  teamNo: z
+    .string()
+    .max(50, 'Team name/number must not exceed 50 characters')
+    .optional()
+    .transform(s => s?.trim() || ''),
 
   subject: z
     .string()
