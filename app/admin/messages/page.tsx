@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import {
-  MessageSquare, RefreshCw, Search, Inbox, Mail, AlertCircle
+  RefreshCw, Search, Inbox, Mail, AlertCircle
 } from 'lucide-react';
 import type { ContactSubmission } from '@/types';
 
@@ -44,7 +44,7 @@ export default function MessagesDashboard() {
             Contact Messages
           </h1>
           <p className="text-zinc-400 font-medium tracking-wide">
-            View public inquiries from the HackO'Clock site.
+            View public inquiries from the HackO&apos;Clock site.
           </p>
         </div>
 
