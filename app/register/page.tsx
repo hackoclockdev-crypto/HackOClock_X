@@ -532,6 +532,7 @@ export default function RegisterPage() {
                   <UpiQrCode
                     upiId={process.env.NEXT_PUBLIC_UPI_ID ?? 'hackoclock@upi'}
                     amount={350 * form.teamSize}
+                    name="IBOCS KLEIT HUBLI"
                     qrImageUrl={process.env.NEXT_PUBLIC_QR_IMAGE_PATH}
                   />
                   <div className="text-center">

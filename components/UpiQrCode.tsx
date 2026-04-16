@@ -60,6 +60,8 @@ export default function UpiQrCode({ upiId, amount, name = "Hack0'Clock", qrImage
 
       {/* Payment info */}
       <div className="text-center">
+        <p className="text-sm text-zinc-400">Paying To</p>
+        <p className="font-semibold text-white mb-2">{name}</p>
         <p className="text-sm text-zinc-400">UPI ID</p>
         <p className="font-mono font-semibold text-cyan-400 text-sm">{upiId}</p>
         <div className="mt-2 flex items-center justify-center gap-2">
