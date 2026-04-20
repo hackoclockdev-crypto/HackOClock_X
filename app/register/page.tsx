@@ -30,6 +30,9 @@ import {
   Binary, Cpu, Terminal, Database, Code2, Globe, Activity, Lock
 } from 'lucide-react';
 
+// Toggle registration availability – set to true to close registration
+const REGISTRATION_CLOSED = true;
+
 const TRACKS = [
   { id: 'AI_ML', label: 'Artificial Intelligence & Machine Learning', icon: '🤖' },
   { id: 'CYBERSECURITY', label: 'Cybersecurity', icon: '🔐' },
@@ -140,6 +143,23 @@ export default function RegisterPage() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [submitError, setSubmitError] = useState('');
+
+  // If registration is closed, show a closed notice and hide the form
+  if (REGISTRATION_CLOSED) {
+    return (
+      <>
+        <Navbar />
+        <BackgroundDecor />
+        <main className="min-h-screen pt-24 pb-20 grid-bg relative flex items-center justify-center">
+          <div className="container max-w-2xl text-center">
+            <h1 className="text-3xl sm:text-4xl font-black mb-4 text-white">Registration Closed</h1>
+            <p className="text-zinc-400 mb-6">We are no longer accepting registrations for Hack0&apos;Clock. Thank you for your interest!</p>
+            <Link href="/" className="btn-primary inline-flex">← Back to Home</Link>
+          </div>
+        </main>
+      </>
+    );
+  }
 
   // ── Field helpers ─────────────────────────────────────────────────────────
   const setField = <K extends keyof FormData>(key: K, value: FormData[K]) => {
