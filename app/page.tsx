@@ -392,15 +392,15 @@ export default function HomePage() {
             {/* Registration Deadline Notice */}
             <div className="flex justify-center mb-8">
               <div
-                className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest animate-pulse"
+                className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest"
                 style={{
-                  background: 'rgba(251, 191, 36, 0.08)',
-                  border: '1px solid rgba(251, 191, 36, 0.35)',
-                  color: '#fbbf24',
+                  background: 'rgba(239, 68, 68, 0.08)',
+                  border: '1px solid rgba(239, 68, 68, 0.35)',
+                  color: '#ef4444',
                 }}
               >
-                <span>⏰</span>
-                Last Day to Register: April 21, 2026
+                <span>🔒</span>
+                Registration Closed
               </div>
             </div>
 
